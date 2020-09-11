@@ -63,8 +63,9 @@ This one is the simplest among the applications. It is a service with a single R
 
 ### 2) SocioRegister Docker and Compose files
 
-The steps are about the same, but this time there will be two images and two containers, one for the Springboot app and one for the socio_db postgres DB:
+The steps are about the same, but this time there will be two images and two containers, one for the Springboot app and one for the socio_db postgres DB. Before touching the docker-stuff you have to do one other important thing! You have to change the url of each DB-connection (DataSource) and make it NOT point to localhost. I will list this action under 0) Of the preceding list:
 
+	0) at DBConfig.java (at the root-folder) change the url into: dataSourceBuilder.url("jdbc:postgresql://sociodb:5432/socio_db");
 	1) clone the socioregister application;
 	2) copy the SocioRegister Docker and Compose file to the root;
 	3) Open a command-line;
@@ -76,13 +77,20 @@ The steps are about the same, but this time there will be two images and two con
 
 ### 3) SocioBank Docker and Compose files
 
-This application is simular to the previous one. But now we are dealing with three images because of the fact that there are two postgres DBs, one for the bank data and one for the integrated SpringBatch (dealing with the internal springbatch meta data). 
+This application is simular to the previous one. But now we are dealing with three images because of the fact that there are two postgres DBs, one for the bank data and one for the integrated SpringBatch (dealing with the internal springbatch meta data). Here you also have to touch the two DataSource urls at src.main.resources:
+
+	-app.datasource.batch.url=jdbc:postgresql://sociobankmetadb:5432/socio_bank_batch_meta_data_db
+	-app.datasource.db.url=jdbc:postgresql://sociobankdb:5432/socio_bank_db
 
 	For the moment I am having an issue with the auto-generate (initialize) of the Meta data tables. Spring should generate them (spring.batch.initialize-schema=always) but something is going wrong since MySQL (I am trying it out in MySQL) is hanging on creating the tables..... I hope to resolve this soon!
 
 
 ### 4) SocioDbBatch Docker and Compose files
 
-This time there are four images! One is the new Batch-application-image and the other three are DB-images. Interestingly two DB-images are refering to previous declared images, or in other words, they are pointing to the previous declared socio_db and Socio_bank_db of 2) and 3). The third DB-images is the Batch-Meta_dat-DB.
+This time there are four images! One is the new Batch-application-image and the other three are DB-images. Interestingly two DB-images are refering to previous declared images, or in other words, they are pointing to the previous declared socio_db and Socio_bank_db of 2) and 3). The third DB-images is the Batch-Meta_dat-DB. The urls to be changed at src.main.resources:
+
+	-app.datasource.batch.url=jdbc:postgresql://sociobatchmetadb:5432/socio_batch_meta_data_db
+	-app.datasource.db.url=jdbc:postgresql://sociodb:5432/socio_db
+	-app.datasource.db.url=jdbc:postgresql://sociobankdb:5432/socio_bank_db
 
 	But first I have to resolve the problem of 3)
