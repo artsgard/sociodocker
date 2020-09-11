@@ -2,7 +2,6 @@ version: "3"
 services:
   springbootapp:
     image: socioweather:latest
-    network_mode: bridge
     container_name: socioweather
     expose:
       - 8083
