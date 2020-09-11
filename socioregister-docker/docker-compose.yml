@@ -1,0 +1,34 @@
+version: "3"
+services:
+  sociodb:
+    image: postgres:latest
+    network_mode: bridge
+    container_name: sociodbpostgres
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+    environment:
+         - POSTGRES_PASSWORD=admin
+         - POSTGRES_USER=postgres
+         - POSTGRES_DB=socio_db
+    restart: unless-stopped
+# APP*****************************************
+  springbootapp:
+    image: socioregister:latest
+    network_mode: bridge
+    container_name: socioregister
+    expose:
+      - 8081
+    ports:
+      - 8081:8081
+    restart: unless-stopped
+    depends_on:
+      - sociodb
+    links:
+      - sociodb
+volumes:
+  postgres-data:
+  
+  
+  
