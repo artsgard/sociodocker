@@ -35,9 +35,9 @@ Testing is still "work in progress"
 
 Docker is a natural and obvious part of deploying Micro Services (DEV and PROD?). Docker containerizes a micro-services setup. A Docker container is like a "real-life" container, but in a virtual manner. There are many ways to build Docker Containers. For this tutorial I choose the following approach:
 
-  1) Dockerfile
-  2) Docker Image
-  3) Docker Container
-  3) Docker Compose
+  1) Dockerfile -> is a script of aspecific format to generate a Docker Image (docker build);
+  2) Docker Image -> is the basis, the blue print of a Docker Container;
+  3) Docker Container -> usually perfoms one single task (eg beeing a postgres dB, or a Springboot application), so you would have a number of containers;
+  3) Docker Compose -> defines the communication of several docker containers and it creates a set of docker containers based on the pre exsisting images.
 
-### The Small Batch Part
+### The Several Components of the Socio Micro Service
