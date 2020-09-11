@@ -35,9 +35,20 @@ Testing is still "work in progress"
 
 Docker is a natural and obvious part of deploying Micro Services (DEV and PROD?). Docker containerizes a micro-services setup. A Docker container is like a "real-life" container, but in a virtual manner. There are many ways to build Docker Containers. For this tutorial I choose the following approach:
 
-  1) Dockerfile -> is a script of aspecific format to generate a Docker Image (docker build);
-  2) Docker Image -> is the basis, the blue print of a Docker Container;
-  3) Docker Container -> usually perfoms one single task (eg beeing a postgres dB, or a Springboot application), so you would have a number of containers;
-  3) Docker Compose -> defines the communication of several docker containers and it creates a set of docker containers based on the pre exsisting images.
+  1) Dockerfile -> is a script, of a specific format, to generate a Docker Image (docker build);
+  2) Docker Image -> is the basis, the blue print, of a Docker Container;
+  3) Docker Container -> usually performs one single task (eg beeing a postgres dB, or a Springboot application), so you would have a number of containers;
+  3) Docker Compose -> it creates a set of docker containers based on the pre exsisting images and it defines the communication among the containers.
 
 ### The Several Components of the Socio Micro Service
+
+Docker is a big subject and I do not intent to cover it here. What i will do is show you, by the hand of several Dockerfiles and Docker Comnpose YML-files, how the four (five) previous created Springboot applications will eventually work together in a Docker-Way. As a first step realizing this goal, we need to annalyse the dependencies of the applications based on there mutual DBs.
+
+	1) SocioRegster REST-Service: socio_db -> stand alone
+	2) SocioBank SpringBatch/ REST-Service: socio_bank_db -> stand alone
+	3) SocioWeather REST-service -> stand alone
+	4) SocioDbBatch SpringBatch -> socio_db, socio_bank_db -> depends on the DBs of 1) and 2)
+	5) SocioSecurity has to be written still (all will depend on this one)
+	
+
+
