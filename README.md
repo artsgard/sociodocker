@@ -42,7 +42,7 @@ Docker is a natural and obvious part of deploying Micro Services (DEV and PROD?)
 
 ### The Several Components of the Socio Micro Service
 
-Docker is a big subject and I do not intent to cover it here. What I will do is show you, by the hand of several Dockerfiles and Docker Compose YML-files, how the four (five) previous created Springboot applications will eventually work together in a Docker-Way. As a first step realizing this goal, we need to analyse the dependencies of the applications, based on there mutual DBs.
+Docker is a big subject and I do not intent to cover it here. What I will do is show you, by the hand of several Dockerfiles and Docker Compose YML-files, how the four (five) previous created Springboot applications will eventually work together in a Docker-Way. As a first step realizing this goal, we need to analyse the dependencies of the applications, based on there mutual DBs etc.
 
 	1) SocioWeather REST-service -> stand alone
 	2) SocioRegster REST-Service: socio_db -> stand alone
