@@ -44,11 +44,11 @@ Docker is a natural and obvious part of deploying Micro Services (DEV and PROD?)
 
 Docker is a big subject and I do not intent to cover it here. What I will do is show you, by the hand of several Dockerfiles and Docker Compose YML-files, how the four (five) previous created Springboot applications will eventually work together in a Docker-Way. As a first step realizing this goal, we need to analyse the dependencies of the applications, based on there mutual DBs.
 
-	1) SocioRegster REST-Service: socio_db -> stand alone
-	2) SocioBank SpringBatch/ REST-Service: socio_bank_db -> stand alone
-	3) SocioWeather REST-service -> stand alone
+	1) SocioWeather REST-service -> stand alone
+	2) SocioRegster REST-Service: socio_db -> stand alone
+	3) SocioBank SpringBatch/ REST-Service: socio_bank_db -> stand alone
 	4) SocioDbBatch SpringBatch -> socio_db, socio_bank_db -> depends on the DBs of 1) and 2)
 	5) SocioSecurity has to be written still (all will depend on this one)
 	
-### 1) SocioRegister Docker and Compose files
+### 1) SocioWeather Report Docker and Compose files
 
