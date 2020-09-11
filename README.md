@@ -54,9 +54,21 @@ Docker is a big subject and I do not intent to cover it here. What I will do is 
 This one is the simplest among the applications. It is a service with a single REST-controller to obtain the weather of a given City. There is no DB etc, it just consults an external service called OpenWeater Report. In order to get docker going for this service do the following:
 
 	1) clone the socioweather project form this site (git clone https://github.com/artsgard/socioweather);
-	2) copy the Docker and Compose file to the root of of the cloned project;
-	3) Open a commanf line at that same root directory and invoke:
-	4) mvn clean install -Dmaven.test.skip=true (which will generate the jar snapshot of the Springboot weather application at the target folder)
-	5) sudo docker build ./ -t socioweather (will generate the socioweather image)
-	6) sudo docker-compose up (will instanciate the container based on one single image only called: socioweather:latest)
-	7) http://localhost:8083/Barcelona (will show you a current weather json of Barcelona)
+	2) copy the SocioWeather Docker and Compose file to the root of of the cloned project;
+	3) Open a command line at that same root directory and invoke:
+	4) mvn clean install -Dmaven.test.skip=true (which will generate the jar snapshot of the Springboot weather application at the target folder);
+	5) sudo docker build ./ -t socioweather (will generate the socioweather image);
+	6) sudo docker-compose up (will instanciate the container based on one single image, called: socioweather:latest);
+	7) http://localhost:8083/Barcelona (will show you the current weather json of Barcelona);
+
+### 2) SocioRegister Docker and Compose files
+
+The steps are about the same, but this time there will be two images and two containers, one for the Springboot app and one for the socio_db postgres DB:
+
+	1) clone the socioregister application;
+	2) copy the SocioRegister Docker and Compose file to the root;
+	3) Open a command-line;
+	4) mvn clean install -Dmaven.test.skip=true
+	5) sudo docker build ./ -t socioregister
+	6) sudo docker-compose up
+	7) http://localhost:8081/socio
