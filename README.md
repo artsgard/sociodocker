@@ -72,3 +72,17 @@ The steps are about the same, but this time there will be two images and two con
 	5) sudo docker build ./ -t socioregister
 	6) sudo docker-compose up
 	7) http://localhost:8081/socio
+
+
+### 3) SocioBank Docker and Compose files
+
+This application is simular to the previous one. But now we are dealing with three images because of the fact that there are two postgres DBs, one for the bank data and one for the integrated SpringBatch (dealing with the internal springbatch meta data). 
+
+	For the moment I am having an issue with the auto-generate (initialize) of the Meta data tables. Spring should generate them (spring.batch.initialize-schema=always) but something is going wrong since MySQL (I am trying it out in MySQL) is hanging on creating the tables..... I hope to resolve this soon!
+
+
+### 4) SocioDbBatch Docker and Compose files
+
+This time there are four images! One is the new Batch-application-image and the other three are DB-images. Interestingly two DB-images are refering to previous declared images, or in other words, they are pointing to the previous declared socio_db and Socio_bank_db of 2) and 3). The third DB-images is the Batch-Meta_dat-DB.
+
+	But first I have to resolve the problem of 3)
