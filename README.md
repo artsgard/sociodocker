@@ -56,4 +56,7 @@ This one is the simplest among the applications. It is a service with a single R
 	1) clone the socioweather project form this site (git clone https://github.com/artsgard/socioweather);
 	2) copy the Docker and Compose file to the root of of the cloned project;
 	3) Open a commanf line at that same root directory and invoke:
-	4) 
+	4) mvn clean install -Dmaven.test.skip=true (which will generate the jar snapshot of the Springboot weather application at the target folder)
+	5) sudo docker build ./ -t socioweather (will generate the socioweather image)
+	6) sudo docker-compose up (will instanciate the container based on one single image only called: socioweather:latest)
+	7) http://localhost:8083/Barcelona (will show you a current weather json of Barcelona)
