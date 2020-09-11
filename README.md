@@ -51,4 +51,9 @@ Docker is a big subject and I do not intent to cover it here. What I will do is 
 	5) SocioSecurity has to be written still (all will depend on this one)
 	
 ### 1) SocioWeather Report Docker and Compose files
+This one is the simplest among the applications. It is a service with a single REST-controller to obtain the weather of a given City. There is no DB etc, it just consults an external service called OpenWeater Report. In order to get docker going for this service do the following:
 
+	1) clone the socioweather project form this site (git clone https://github.com/artsgard/socioweather);
+	2) copy the Docker and Compose file to the root of of the cloned project;
+	3) Open a commanf line at that same root directory and invoke:
+	4) 
