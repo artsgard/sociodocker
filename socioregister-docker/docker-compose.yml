@@ -1,11 +1,10 @@
 version: "3"
 services:
-  sociodb:
+  socioregisterdb:
     image: postgres:latest
-    network_mode: bridge
-    container_name: sociodbpostgres
+    container_name: socioregisterdb
     volumes:
-      - postgres-data:/var/lib/postgresql/data
+      - ./postgres-data:/var/lib/postgresql/data
     ports:
       - 5432:5432
     environment:
@@ -14,9 +13,8 @@ services:
          - POSTGRES_DB=socio_db
     restart: unless-stopped
 # APP*****************************************
-  springbootapp:
+  socioregister:
     image: socioregister:latest
-    network_mode: bridge
     container_name: socioregister
     expose:
       - 8081
@@ -24,11 +22,11 @@ services:
       - 8081:8081
     restart: unless-stopped
     depends_on:
-      - sociodb
+      - socioregisterdb
     links:
-      - sociodb
+      - socioregisterdb
 volumes:
-  postgres-data:
+  postgres-data:j
   
   
   
