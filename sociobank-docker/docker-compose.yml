@@ -2,35 +2,31 @@ version: "3"
 services:
   sociobankdb:
     image: postgres:latest
-    network_mode: bridge
-    container_name: sociobankdbpostgres
-    restart: always
+    container_name: sociobankdb
     volumes:
       - postgres-data:/var/lib/postgresql/data
     ports:
-      - 5434:5432
+      - 5432:5432
     environment:
-      - POSTGRES_PASSWORD=admin
-      - POSTGRES_USER=postgres
-      - POSTGRES_DB=socio_bank_db
-# second DB***************************************** 
+         - POSTGRES_PASSWORD=admin
+         - POSTGRES_USER=postgres
+         - POSTGRES_DB=socio_bank_db
+    restart: unless-stopped
   sociobankmetadb:
     image: postgres:latest
-    network_mode: bridge
-    container_name: sociobankmetapostgres
-    restart: always
+    container_name: sociobankmetadb
     volumes:
       - postgres-data:/var/lib/postgresql/data
     ports:
-      - 5433:5432
+      - 5433:5433
     environment:
-      - POSTGRES_PASSWORD=admin
-      - POSTGRES_USER=postgres
-      - POSTGRES_DB=socio_bank_batch_meta_data_db
+         - POSTGRES_PASSWORD=admin
+         - POSTGRES_USER=postgres
+         - POSTGRES_DB=socio_bank_batch_meta_data_db
+    restart: unless-stopped
 # APP*****************************************
-  springbootapp:
+  sociobank:
     image: sociobank:latest
-    network_mode: bridge
     container_name: sociobank
     expose:
       - 8082
